@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clipper Teenager MVP</title>
+</head>
+<body>
+    <h1>Clipper Teenager MVP (Live Stripe)</h1>
+    <div id="feed"></div>
+    <button onclick="subscribe('price_1SpiAa639JRV7b5v8XuLdpsi')">Silver</button>
+    <button onclick="subscribe('price_1SpiFp639JRV7b5vFrvUPG2P')">Premium</button>
+    <button onclick="subscribe('price_1SpiIH639JRV7b5vohhmcOm9')">Monster</button>
+    <script src="script.js"></script>
+</body>
+</html>
