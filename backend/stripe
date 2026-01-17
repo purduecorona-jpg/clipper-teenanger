@@ -1,0 +1,1 @@
+npm install express stripe nodemailer body-parser dotenv
