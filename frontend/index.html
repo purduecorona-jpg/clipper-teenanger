@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Płatności Stripe</title>
+</head>
+<body>
+  <h1>Wybierz pakiet:</h1>
+  <button onclick="buyPackage('monster')">Monster</button>
+  <button onclick="buyPackage('premium')">Premium</button>
+  <button onclick="buyPackage('silver')">Silver</button>
+
+  <script>
+    async function buyPackage(packageName) {
+      try {
+        const response = await fetch('http://localhost:3000/create-checkout-session', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ package: packageName })
+        });
+
+        const data = await response.json();
+        if (data.url) window.location.href = data.url;
+        else alert('Błąd płatności');
+      } catch (error) {
+        console.error(error);
+        alert('Coś poszło nie tak');
+      }
+    }
+  </script>
+</body>
+</html>
