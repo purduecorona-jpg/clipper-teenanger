@@ -1,0 +1,6 @@
+clipper-teenager/
+├─ backend/
+│  ├─ server.js
+│  ├─ package.json
+│  └─ .env
+└─ frontend/
