@@ -1,19 +1,29 @@
 const express = require('express');
 const cors = require('cors');
-const stripeRouter = require('./stripe');
-const videoRouter = require('./video');
-
 require('dotenv').config();
 
 const app = express();
+const PORT = process.env.PORT || 3000;
+
 app.use(cors());
 app.use(express.json());
 
-app.use('/create-checkout-session', stripeRouter);
-app.use('/upload-video', videoRouter);
+// Status endpoint – zawsze działa
+app.get('/api/status', (req, res) => {
+  res.json({ status: "Clipper Teenager MVP działa poprawnie" });
+});
 
-app.use(express.static('../frontend'));
+// Stripe webhook endpoint (przykład)
+app.post('/api/webhook', express.raw({ type: 'application/json' }), (req, res) => {
+  // tutaj Twój kod obsługi Stripe Live
+  res.status(200).send('Webhook received');
+});
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// Wszystkie inne requesty → obsługa 404
+app.use((req, res) => {
+  res.status(404).json({ error: 'Endpoint nie istnieje' });
+});
 
+app.listen(PORT, () => {
+  console.log(`Backend Clipper Teenager działa na porcie ${PORT}`);
+});
